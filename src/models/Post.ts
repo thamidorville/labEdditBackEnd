@@ -4,9 +4,19 @@ export interface PostDB { //representa o banco de dados
     content: string,
     likes: number,
     dislikes: number,
-    coments: number,
+    created_at: string,
+    updated_at: string
+}
+
+export interface PostDBWithCreatorNickname {
+    id: string,
+    creator_id: string,
+    content: string,
+    likes: number,
+    dislikes: number,
     created_at: string,
     updated_at: string,
+    creator_nickname: string
 }
 
 export interface PostModel { //representa a entidade que o front irá trabalhar 
@@ -20,6 +30,17 @@ export interface PostModel { //representa a entidade que o front irá trabalhar
         id: string,
         nickname: string
     }
+}
+
+export interface LikeDislikeDB {
+    user_id: string,
+    post_id: string,
+    like: number
+}
+
+export enum POST_LIKE {
+    ALREADY_LIKED = "ALREADY LIKED",
+    ALREADY_DISLIKED = "ALREADY DISLIKED"
 }
 
 export class Post {
@@ -36,50 +57,93 @@ export class Post {
     public getId(): string {
         return this.id
     }
-    public setId(value:string): void {
+    public setId(value: string): void {
         this.id = value
     }
     public getContent(): string {
         return this.content
     }
-    public setContent(value:string): void {
+    public setContent(value: string): void {
         this.content = value
     }
     public getLikes(): number {
         return this.likes
     }
-    public setLikes(value:number): void {
+    public setLikes(value: number): void {
         this.likes = value
     }
+
+    public addLike = (): void => {
+        this.likes++
+    }
+
+    public removeLike = (): void => {
+        this.likes--
+    }
+
     public getDislikes(): number {
         return this.dislikes
     }
-    public setDislikes(value:number): void {
+    public setDislikes(value: number): void {
         this.dislikes = value
     }
+
+    public addDislike = ():void => {
+        this.dislikes++
+    }
+
+    public removeDislike = ():void => {
+        this.dislikes--
+    }
+
     public getCreatedAt(): string {
         return this.createdAt
     }
-    public setCreatedAt(value:string): void {
+    public setCreatedAt(value: string): void {
         this.createdAt = value
     }
     public getUpdatedAt(): string {
         return this.updatedAt
     }
-    public setUpdatedAt(value:string): void {
+    public setUpdatedAt(value: string): void {
         this.updatedAt = value
     }
     public getCreatorId(): string {
         return this.creatorId
     }
-    public setCreatorId(value:string): void {
+    public setCreatorId(value: string): void {
         this.creatorId = value
     }
     public getNickname(): string {
         return this.creatorNickname
     }
-    public setCreatorNickname(value:string): void {
+    public setCreatorNickname(value: string): void {
         this.creatorNickname = value
+    }
+    public toDBModel(): PostDB {
+        return {
+            id: this.id,
+            creator_id: this.creatorId,
+            content: this.content,
+            likes: this.likes,
+            dislikes: this.dislikes,
+            created_at: this.createdAt,
+            updated_at: this.updatedAt
+        }
+    }
+    public toBusinessModel(): PostModel {
+        return {
+            id: this.id,
+            content: this.content,
+            likes: this.likes,
+            dislikes: this.dislikes,
+            createdAt: this.createdAt,
+            updatedAt: this.updatedAt,
+            creator: {
+                id: this.creatorId,
+                nickname: this.creatorNickname
+            }
+        }
     }
 }
 

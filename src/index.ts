@@ -18,7 +18,7 @@ app.listen(Number(process.env.PORT) || 3003, () => {
 
 // routers das entidades
 app.use('/users', userRouter) //toda requisição users será reenviada para userRouter
-app.use('posts', postRouter)
+app.use('/posts', postRouter)
 app.use('/comments', commentRouter)
 
 //endpoint ping de teste

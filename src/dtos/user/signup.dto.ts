@@ -15,8 +15,8 @@ export interface SignupOutputDTO {
 // dados que são esperados nesse endpoint.
 
 //estrutura do dado de entrada que o zod irá validar
-export const SignupSchema = z.object({
+export const SignupSchema = z.object({ //objeto de entrada
     nickname: z.string().min(2),
     email: z.string().email(),
     password: z.string().min(4)
-}) //objeto de entrada
+}).transform(data => data as SignupInputDTO)

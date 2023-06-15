@@ -5,7 +5,7 @@ export enum USER_ROLES {
 
 export interface TokenPayload {
     id: string,
-    name: string,
+    nickname: string,
     role: USER_ROLES
 }
 export interface UserDB { //entidade do banco de dados
@@ -56,7 +56,7 @@ export class User {
     public setPassword(value: string): void {
         this.password = value
     }
-    public getRole(): string {
+    public getRole(): USER_ROLES {
         return this.role
     }
     public setRole(value: USER_ROLES) {
