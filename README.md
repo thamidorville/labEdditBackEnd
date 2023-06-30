@@ -1,9 +1,11 @@
 # labEdditBackEnd
 
 ## Back-end
+Endpoints seguindo as boas práticas HTTP
+Uso do ExpressJS, Typescript e SQLite
 
-- [ ]  Endpoints seguindo as boas práticas HTTP
-- [ ]  Uso do ExpressJS, Typescript e SQLite
-- [ ]  Cobertura de testes (pelo menos 70% da Business)
-- [ ]  API deployada
-- [ ]  Documentação README e POSTMAN
+Documentação POSTMAN: 
+
+https://documenter.getpostman.com/view/25826626/2s93sgXqt7
+
+https://github.com/thamidorville/labEdditBackEnd/tree/labEdditBackEnd

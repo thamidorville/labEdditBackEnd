@@ -12,4 +12,4 @@ export const LikeOrDislikeCommentSchema = z.object({
   commentId: z.string().min(1),
   like: z.boolean(),
   token: z.string().min(1)
-});
+}).transform(data => data as LikeOrDislikeCommentInputDTO)

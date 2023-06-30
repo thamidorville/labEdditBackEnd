@@ -1,13 +1,13 @@
 import z from 'zod'
+import { CommentModel } from '../../models/Comment'
 
 export interface GetCommentsInputDTO {
-  commentId: string,
+
   token: string
 }
 
-export type GetCommentsOutputDTO = Comment[]
+export type GetCommentsOutputDTO = CommentModel[]
 
 export const GetCommentsSchema = z.object({
-  commentId: z.string().min(1),
   token: z.string().min(1),
-})
+}).transform(data => data as GetCommentsInputDTO)
